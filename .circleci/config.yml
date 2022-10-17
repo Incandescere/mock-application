@@ -8,6 +8,7 @@ workflows:
   build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
+          context: aws-ecr-deploy
           repo: "${AWS_APP_NAME}"
           tag: latest
       - aws-ecs/deploy-service-update:
