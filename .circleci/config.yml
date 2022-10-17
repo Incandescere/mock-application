@@ -15,6 +15,6 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image # only run this job once aws-ecr/build-and-push-image has completed
           context: aws-ecr-deploy
-          family: "${AWS_APP_NAME}-service"
+          family: "${AWS_APP_NAME}-task"
           cluster: "${AWS_APP_NAME}-cluster"
           container-image-name-updates: "container=${AWS_APP_NAME}-service,tag=latest"
