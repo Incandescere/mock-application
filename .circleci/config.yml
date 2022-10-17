@@ -1,18 +1,18 @@
 version: 2.1
 
 orbs:
-  aws-ecr: circleci/aws-ecr@x.y.z
-  aws-ecs: circleci/aws-ecs@0x.y.z
+  aws-ecr: circleci/aws-ecr@8.1.3
+  aws-ecs: circleci/aws-ecs@2.1.3
 
 workflows:
   build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
-          repo: "${AWS_RESOURCE_NAME_PREFIX}"
-          tag: "${CIRCLE_SHA1}"
+          repo: "${AWS_APP_NAME}"
+          tag: latest
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image # only run this job once aws-ecr/build-and-push-image has completed
-          family: "${AWS_RESOURCE_NAME_PREFIX}-service"
-          cluster: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
-          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX}-service,tag=${CIRCLE_SHA1}"
+          family: "${AWS_APP_NAME}-service"
+          cluster: "${AWS_APP_NAME}-cluster"
+          container-image-name-updates: "container=${AWS_APP_NAME}-service,tag=latest
