@@ -18,4 +18,4 @@ workflows:
           cluster: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
           launch-type: EC2
           task-definition: "${AWS_RESOURCE_NAME_PREFIX}-task"
-          role-arn: ecsInstanceRole
+          role-arn: arn:aws:iam::489580969055:role/ecsInstanceRole
