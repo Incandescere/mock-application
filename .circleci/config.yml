@@ -11,12 +11,12 @@ workflows:
           context: aws-ecr-deploy
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           tag: latest
-        - aws-ecs/run-task:
-            requires:
-              - aws-ecr/build-and-push-image
-            context: aws-ecr-deploy
-            awsvpc: true
-            cluster: mock-app-cluster
-            launch-type: ec2
-            task-definition: mock-app-task
+      - aws-ecs/run-task:
+          requires:
+            - aws-ecr/build-and-push-image
+          context: aws-ecr-deploy
+          awsvpc: true
+          cluster: mock-app-cluster
+          launch-type: ec2
+          task-definition: mock-app-task
             
