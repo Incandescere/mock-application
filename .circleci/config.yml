@@ -1,0 +1,22 @@
+version: 2.1
+
+orbs:
+  aws-ecr: circleci/aws-ecr@8.1.3
+  aws-ecs: circleci/aws-ecs@3.2.0
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          context: aws-ecr-deploy
+          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          tag: latest
+        - aws-ecs/run-task:
+            requires:
+              - aws-ecr/build-and-push-image
+            context: aws-ecr-deploy
+            awsvpc: true
+            cluster: mock-app-cluster
+            launch-type: ec2
+            task-definition: mock-app-task
+            
