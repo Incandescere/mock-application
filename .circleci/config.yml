@@ -15,7 +15,7 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           context: aws-ecr-deploy
-          awsvpc: true
+          awsvpc: false
           cluster: mock-app-cluster
           launch-type: EC2
           task-definition: mock-app-task
