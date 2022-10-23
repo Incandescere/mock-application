@@ -17,6 +17,6 @@ workflows:
           context: aws-ecr-deploy
           awsvpc: true
           cluster: mock-app-cluster
-          launch-type: ec2
+          launch-type: EC2
           task-definition: mock-app-task
             
