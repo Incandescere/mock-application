@@ -18,5 +18,5 @@ workflows:
           cluster: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
           launch-type: EC2
           task-definition: "${AWS_RESOURCE_NAME_PREFIX}-task"
-          role-arn: "arn:aws:iam::${AWS_ACCOUNT_ID}:user/valy-dev"
+          role-arn: "arn:aws:iam::${AWS_ACCOUNT_ID}:role/ecsInstanceRole"
           role-session-name: mock-app-session
