@@ -15,7 +15,7 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           context: aws-ecr-deploy
-          cluster: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
+          cluster: mock-cluster
           launch-type: EC2
           task-definition: "${AWS_RESOURCE_NAME_PREFIX}-task"
           awsvpc: false
